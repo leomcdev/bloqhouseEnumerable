@@ -163,7 +163,7 @@
             "label": "CNR",
             "offset": 0,
             "slot": "251",
-            "type": "t_contract(ICNR)3336",
+            "type": "t_contract(ICNR)4496",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:59"
           },
@@ -301,7 +301,7 @@
             "label": "bytes32",
             "numberOfBytes": "32"
           },
-          "t_contract(ICNR)3336": {
+          "t_contract(ICNR)4496": {
             "label": "contract ICNR",
             "numberOfBytes": "20"
           },

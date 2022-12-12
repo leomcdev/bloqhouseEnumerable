@@ -48,6 +48,16 @@ describe("Whitelist", function () {
     console.log(investor.address);
     let units = [1000000000, 1000000001, 1000000002];
 
+    let i;
+    // bal = await rwat.balanceOf(rwat.address);
+    // console.log("bal rwat", bal);
+    for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
+      console.log("ok", i);
+    }
+    for (i = 0; i < (await rwat.tokenOfOwnerByIndex(rwat.address)); i++) {
+      console.log("ok", i);
+    }
+
     console.log("current asset cap", await rwat.getAssetCap(1));
 
     await rwat.updateAssetCap(1, 1000);
