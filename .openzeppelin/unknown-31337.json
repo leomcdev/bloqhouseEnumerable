@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-    "txHash": "0xd6f6f0b5feba2dbfa7ac87d29b66ec064b4f41097f1bb1c1a86cbf9ac5d070b6"
+    "txHash": "0x6d59a205a51395c422c99cd636f0c24891a850fde4861d024d85d4859069109a"
   },
   "proxies": [
     {
@@ -22,19 +22,19 @@
     },
     {
       "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
-      "txHash": "0x84b08242beea9d80db9c4d27cc8408879f85636453bf657ce0948d420ba9f2d8",
+      "txHash": "0x84fcd1412533f63f6ca9193672ffb705de289ff08906db968b9a9b8f8195f5d3",
       "kind": "transparent"
     },
     {
       "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-      "txHash": "0x76c6217f2ca21ab118a598145ef6f50be6a732ba70759f55defee674826718eb",
+      "txHash": "0xd9f4d9b85ea8df8a3afafb1ae6a6a51e3a7bbbeda6b2635c403f6c1d2e7e432c",
       "kind": "transparent"
     }
   ],
   "impls": {
     "238244a6645adf15aa6964434be9dbc6d3850346ab346d67f0568facee2c0fad": {
       "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
-      "txHash": "0x0e2840e6ec347d9305debd2a6d821ed191f70c57f55a05fae43d85b57c0c69e3",
+      "txHash": "0x5d3c80d9b9631ec1d1a7837da654a6c1b0033a5527557c822f2b7a401b7f737d",
       "layout": {
         "solcVersion": "0.8.4",
         "storage": [
@@ -163,7 +163,7 @@
             "label": "CNR",
             "offset": 0,
             "slot": "251",
-            "type": "t_contract(ICNR)4496",
+            "type": "t_contract(ICNR)3725",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:59"
           },
@@ -301,7 +301,7 @@
             "label": "bytes32",
             "numberOfBytes": "32"
           },
-          "t_contract(ICNR)4496": {
+          "t_contract(ICNR)3725": {
             "label": "contract ICNR",
             "numberOfBytes": "20"
           },

@@ -21,7 +21,7 @@ import "../interfaces/ICNR.sol";
 
 contract RWAT is
     Initializable,
-    ERC721Upgradeable,
+    ERC721EnumerableUpgradeable,
     AccessControlUpgradeable,
     PausableUpgradeable
 {
@@ -381,7 +381,7 @@ contract RWAT is
         public
         view
         virtual
-        override(ERC721Upgradeable, AccessControlUpgradeable)
+        override(ERC721EnumerableUpgradeable, AccessControlUpgradeable)
         returns (bool)
     {
         return super.supportsInterface(interfaceId);
