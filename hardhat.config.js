@@ -9,6 +9,8 @@ const {
   BSCTESTNET_PRIVATE_KEY_1970,
   BSC_API_URL,
   BSC_MAINNET_PRIVATE_KEY,
+  POLYGONSCAN_API_URL,
+  POLYGONSCAN_API_KEY,
 } = process.env;
 
 module.exports = {
@@ -32,11 +34,11 @@ module.exports = {
       accounts: [`0x${BSC_MAINNET_PRIVATE_KEY}`],
       allowUnlimitedContractSize: true,
     },
-    // mumbai: {
-    //   url: POLYGONSCAN_API_URL,
-    //   accounts: [`0x${PRIVATE_KEY}`],
-    //   allowUnlimitedContractSize: true,
-    // },
+    mumbai: {
+      url: POLYGONSCAN_API_URL,
+      accounts: [`0x${BSCTESTNET_PRIVATE_KEY_1970}`],
+      allowUnlimitedContractSize: true,
+    },
   },
   settings: {
     optimizer: {
@@ -48,11 +50,11 @@ module.exports = {
     currency: "USD",
     token: "BNB",
     gasPriceApi: "https://api.bscscan.com/api?module=proxy&action=eth_gasPrice",
-    gasPrice: 5,
+    gasPrice: 6.5,
     coinmarketcap: "0431b70e-ffff-4061-81b0-fa361384d36c",
     // enabled: (process.env.REPORT_GAS) ? true : false
   },
   etherscan: {
-    apiKey: BSCSCAN_API_KEY,
+    apiKey: POLYGONSCAN_API_KEY,
   },
 };

@@ -4,7 +4,7 @@ const { ethers, upgrades } = require("hardhat");
 
 CNR = "0x0cadb0d9e410072325d2acc00aab99eb795a8c86";
 
-describe("Whitelist", function () {
+describe("Claim units and check enumerable token ids", function () {
   let owner, provider, investor, testToken;
 
   beforeEach(async function () {
@@ -51,12 +51,21 @@ describe("Whitelist", function () {
     let i;
     // bal = await rwat.balanceOf(rwat.address);
     // console.log("bal rwat", bal);
+    // for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
+    //   console.log("ok", i);
+    // }
+    arr = [];
+    let tokens;
     for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
-      console.log("ok", i);
+      arr[i] = await rwat.tokenOfOwnerByIndex(rwat.address, i);
     }
-    for (i = 0; i < (await rwat.tokenOfOwnerByIndex(rwat.address)); i++) {
-      console.log("ok", i);
-    }
+    console.log("arresr", arr);
+    // for (j = 0; j < arr.length; j++) {
+    //   console.log("arr with tokens", arr[j]);
+    // }
+    // console.log("arr", arr);
+
+    console.log("owner of: ", await rwat.tokenOfOwnerByIndex(rwat.address, 3));
 
     console.log("current asset cap", await rwat.getAssetCap(1));
 

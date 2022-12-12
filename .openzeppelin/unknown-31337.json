@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-    "txHash": "0x6d59a205a51395c422c99cd636f0c24891a850fde4861d024d85d4859069109a"
+    "txHash": "0x24673bded35a8bde7609b4a7da5331feacc847f1d287a6bceb8c1f547c5e36a0"
   },
   "proxies": [
     {
@@ -22,19 +22,19 @@
     },
     {
       "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
-      "txHash": "0x84fcd1412533f63f6ca9193672ffb705de289ff08906db968b9a9b8f8195f5d3",
+      "txHash": "0x9909461b96d4d866c688d01f9778cc4bb1cd3f817cf0f2c2a36c010314a92977",
       "kind": "transparent"
     },
     {
       "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-      "txHash": "0xd9f4d9b85ea8df8a3afafb1ae6a6a51e3a7bbbeda6b2635c403f6c1d2e7e432c",
+      "txHash": "0x08e2f839114f20b3132210111e37448ddf5b7adf3f2c5cf4248714a01baf20b1",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "238244a6645adf15aa6964434be9dbc6d3850346ab346d67f0568facee2c0fad": {
+    "624560f7771d65e011c032027606ed961eca06d854f5f8a60a76597c046296b1": {
       "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
-      "txHash": "0x5d3c80d9b9631ec1d1a7837da654a6c1b0033a5527557c822f2b7a401b7f737d",
+      "txHash": "0x3e5561741b906640f3f04627b9a708fc19c125750696d6921eaf92cafd4e903a",
       "layout": {
         "solcVersion": "0.8.4",
         "storage": [
@@ -128,9 +128,49 @@
             "src": "@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol:465"
           },
           {
-            "label": "_roles",
+            "label": "_ownedTokens",
             "offset": 0,
             "slot": "151",
+            "type": "t_mapping(t_address,t_mapping(t_uint256,t_uint256))",
+            "contract": "ERC721EnumerableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol:22"
+          },
+          {
+            "label": "_ownedTokensIndex",
+            "offset": 0,
+            "slot": "152",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ERC721EnumerableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol:25"
+          },
+          {
+            "label": "_allTokens",
+            "offset": 0,
+            "slot": "153",
+            "type": "t_array(t_uint256)dyn_storage",
+            "contract": "ERC721EnumerableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol:28"
+          },
+          {
+            "label": "_allTokensIndex",
+            "offset": 0,
+            "slot": "154",
+            "type": "t_mapping(t_uint256,t_uint256)",
+            "contract": "ERC721EnumerableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol:31"
+          },
+          {
+            "label": "__gap",
+            "offset": 0,
+            "slot": "155",
+            "type": "t_array(t_uint256)46_storage",
+            "contract": "ERC721EnumerableUpgradeable",
+            "src": "@openzeppelin/contracts-upgradeable/token/ERC721/extensions/ERC721EnumerableUpgradeable.sol:175"
+          },
+          {
+            "label": "_roles",
+            "offset": 0,
+            "slot": "201",
             "type": "t_mapping(t_bytes32,t_struct(RoleData)34_storage)",
             "contract": "AccessControlUpgradeable",
             "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:61"
@@ -138,7 +178,7 @@
           {
             "label": "__gap",
             "offset": 0,
-            "slot": "152",
+            "slot": "202",
             "type": "t_array(t_uint256)49_storage",
             "contract": "AccessControlUpgradeable",
             "src": "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol:259"
@@ -146,7 +186,7 @@
           {
             "label": "_paused",
             "offset": 0,
-            "slot": "201",
+            "slot": "251",
             "type": "t_bool",
             "contract": "PausableUpgradeable",
             "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:29"
@@ -154,7 +194,7 @@
           {
             "label": "__gap",
             "offset": 0,
-            "slot": "202",
+            "slot": "252",
             "type": "t_array(t_uint256)49_storage",
             "contract": "PausableUpgradeable",
             "src": "@openzeppelin/contracts-upgradeable/security/PausableUpgradeable.sol:116"
@@ -162,7 +202,7 @@
           {
             "label": "CNR",
             "offset": 0,
-            "slot": "251",
+            "slot": "301",
             "type": "t_contract(ICNR)3725",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:59"
@@ -170,7 +210,7 @@
           {
             "label": "isWhitelisted",
             "offset": 0,
-            "slot": "252",
+            "slot": "302",
             "type": "t_mapping(t_address,t_bool)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:60"
@@ -178,7 +218,7 @@
           {
             "label": "pausedTransfers",
             "offset": 0,
-            "slot": "253",
+            "slot": "303",
             "type": "t_bool",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:62"
@@ -186,7 +226,7 @@
           {
             "label": "assetPaused",
             "offset": 0,
-            "slot": "254",
+            "slot": "304",
             "type": "t_mapping(t_uint256,t_bool)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:63"
@@ -194,7 +234,7 @@
           {
             "label": "nextId",
             "offset": 0,
-            "slot": "255",
+            "slot": "305",
             "type": "t_mapping(t_uint256,t_uint256)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:65"
@@ -202,7 +242,7 @@
           {
             "label": "lastId",
             "offset": 0,
-            "slot": "256",
+            "slot": "306",
             "type": "t_mapping(t_uint256,t_uint256)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:66"
@@ -210,7 +250,7 @@
           {
             "label": "assetEarningsToken",
             "offset": 0,
-            "slot": "257",
+            "slot": "307",
             "type": "t_mapping(t_uint256,t_contract(IERC20Upgradeable)768)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:68"
@@ -218,7 +258,7 @@
           {
             "label": "totalShareEarnings",
             "offset": 0,
-            "slot": "258",
+            "slot": "308",
             "type": "t_mapping(t_uint256,t_uint256)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:69"
@@ -226,7 +266,7 @@
           {
             "label": "claimedEarnings",
             "offset": 0,
-            "slot": "259",
+            "slot": "309",
             "type": "t_mapping(t_uint256,t_uint256)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:70"
@@ -234,7 +274,7 @@
           {
             "label": "assetIdToAssetCap",
             "offset": 0,
-            "slot": "260",
+            "slot": "310",
             "type": "t_mapping(t_uint256,t_uint256)",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:72"
@@ -242,7 +282,7 @@
           {
             "label": "serverPubKey",
             "offset": 0,
-            "slot": "261",
+            "slot": "311",
             "type": "t_address",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:74"
@@ -250,7 +290,7 @@
           {
             "label": "name_",
             "offset": 0,
-            "slot": "262",
+            "slot": "312",
             "type": "t_string_storage",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:75"
@@ -258,7 +298,7 @@
           {
             "label": "symbol_",
             "offset": 0,
-            "slot": "263",
+            "slot": "313",
             "type": "t_string_storage",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:76"
@@ -266,7 +306,7 @@
           {
             "label": "__gap",
             "offset": 0,
-            "slot": "264",
+            "slot": "314",
             "type": "t_array(t_uint256)1000_storage",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:390"
@@ -285,6 +325,10 @@
             "label": "uint256[44]",
             "numberOfBytes": "1408"
           },
+          "t_array(t_uint256)46_storage": {
+            "label": "uint256[46]",
+            "numberOfBytes": "1472"
+          },
           "t_array(t_uint256)49_storage": {
             "label": "uint256[49]",
             "numberOfBytes": "1568"
@@ -292,6 +336,10 @@
           "t_array(t_uint256)50_storage": {
             "label": "uint256[50]",
             "numberOfBytes": "1600"
+          },
+          "t_array(t_uint256)dyn_storage": {
+            "label": "uint256[]",
+            "numberOfBytes": "32"
           },
           "t_bool": {
             "label": "bool",
@@ -315,6 +363,10 @@
           },
           "t_mapping(t_address,t_mapping(t_address,t_bool))": {
             "label": "mapping(address => mapping(address => bool))",
+            "numberOfBytes": "32"
+          },
+          "t_mapping(t_address,t_mapping(t_uint256,t_uint256))": {
+            "label": "mapping(address => mapping(uint256 => uint256))",
             "numberOfBytes": "32"
           },
           "t_mapping(t_address,t_uint256)": {
