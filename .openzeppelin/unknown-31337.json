@@ -2,7 +2,7 @@
   "manifestVersion": "3.2",
   "admin": {
     "address": "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
-    "txHash": "0x24673bded35a8bde7609b4a7da5331feacc847f1d287a6bceb8c1f547c5e36a0"
+    "txHash": "0x66a20343bbb1d97e2c0b307bfd6f432c833baa9bac339f647a1ab7062f88c46d"
   },
   "proxies": [
     {
@@ -22,19 +22,19 @@
     },
     {
       "address": "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
-      "txHash": "0x9909461b96d4d866c688d01f9778cc4bb1cd3f817cf0f2c2a36c010314a92977",
+      "txHash": "0xf6dc60efa4800520f44dad79e1376bf43f013ff5b14f6cffc54928093b6f5a9c",
       "kind": "transparent"
     },
     {
       "address": "0x0165878A594ca255338adfa4d48449f69242Eb8F",
-      "txHash": "0x08e2f839114f20b3132210111e37448ddf5b7adf3f2c5cf4248714a01baf20b1",
+      "txHash": "0xe549e41a27f730f42ea96516e14389d449e69fce2daab9d47b3d3fc51304155b",
       "kind": "transparent"
     }
   ],
   "impls": {
-    "624560f7771d65e011c032027606ed961eca06d854f5f8a60a76597c046296b1": {
+    "43ed98d4acf965f5f6c70dbb332ceb702935c230201b46fad287908fa4fc72cc": {
       "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
-      "txHash": "0x3e5561741b906640f3f04627b9a708fc19c125750696d6921eaf92cafd4e903a",
+      "txHash": "0x2e2df47989bef9162ded0fafa0567bd0e5d3c76c30dd7eccdd7f3179e005292a",
       "layout": {
         "solcVersion": "0.8.4",
         "storage": [
@@ -203,7 +203,7 @@
             "label": "CNR",
             "offset": 0,
             "slot": "301",
-            "type": "t_contract(ICNR)3725",
+            "type": "t_contract(ICNR)3727",
             "contract": "RWAT",
             "src": "contracts/RWAT.sol:59"
           },
@@ -309,7 +309,7 @@
             "slot": "314",
             "type": "t_array(t_uint256)1000_storage",
             "contract": "RWAT",
-            "src": "contracts/RWAT.sol:390"
+            "src": "contracts/RWAT.sol:400"
           }
         ],
         "types": {
@@ -349,7 +349,7 @@
             "label": "bytes32",
             "numberOfBytes": "32"
           },
-          "t_contract(ICNR)3725": {
+          "t_contract(ICNR)3727": {
             "label": "contract ICNR",
             "numberOfBytes": "20"
           },

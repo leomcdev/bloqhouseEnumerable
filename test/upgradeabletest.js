@@ -41,7 +41,7 @@ describe("Claim units and check enumerable token ids", function () {
     await rwat.grantRole(ADMIN, provider.address);
 
     await rwat.createAsset(1, 300, testToken.address);
-    await rwat.mintAsset(1, 100);
+    await rwat.mintAsset(1, 10);
 
     console.log("total assets in circulation", await rwat.getTotalMinted(1));
     await rwat.setWhitelisted([investor.address], true);
@@ -49,54 +49,63 @@ describe("Claim units and check enumerable token ids", function () {
     let units = [1000000000, 1000000001, 1000000002];
 
     let i;
-    // bal = await rwat.balanceOf(rwat.address);
-    // console.log("bal rwat", bal);
-    // for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
-    //   console.log("ok", i);
-    // }
+    bal = await rwat.balanceOf(rwat.address);
+    console.log("bal rwat", bal);
+    for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
+      console.log("ok", i);
+    }
     arr = [];
     let tokens;
     for (i = 0; i < (await rwat.balanceOf(rwat.address)); i++) {
       arr[i] = await rwat.tokenOfOwnerByIndex(rwat.address, i);
     }
     console.log("arresr", arr);
-    // for (j = 0; j < arr.length; j++) {
-    //   console.log("arr with tokens", arr[j]);
-    // }
-    // console.log("arr", arr);
+    for (j = 0; j < arr.length; j++) {
+      console.log("arr with tokens", arr[j]);
+    }
+    console.log("arr", arr);
 
-    console.log("owner of: ", await rwat.tokenOfOwnerByIndex(rwat.address, 3));
-
-    console.log("current asset cap", await rwat.getAssetCap(1));
-
-    await rwat.updateAssetCap(1, 1000);
-    console.log("asset cap after update", await rwat.getAssetCap(1));
-
-    await rwat.mintAsset(1, 150);
-
+    console.log(await rwat.balanceOf(rwat.address));
+    console.log("owner of tokenid 1: ", await rwat.ownerOf(1000000000));
+    await rwat.sendSharesToUser(1, investor.address, 1, [1000000000]);
+    console.log(await rwat.balanceOf(investor.address));
     console.log(
-      "total assets in circulation after creating more",
-      await rwat.getTotalMinted(1)
+      "getallnftsofowner",
+      await rwat.getAllNFTsOfOwner(rwat.address)
     );
 
-    let obj = ethers.utils.defaultAbiCoder.encode(
-      ["address", "address", "uint[]"],
-      [investor.address, rwat.address, units]
-    );
-    const { prefix, v, r, s } = await createSignature(obj);
+    console.log("owner of: ", await rwat.tokenOfOwnerByIndex(rwat.address, 0));
 
-    await rwat.updateServer(provider.address);
+    // console.log("current asset cap", await rwat.getAssetCap(1));
 
-    await rwat.connect(investor).claimUnits(units, prefix, v, r, s);
+    // await rwat.updateAssetCap(1, 1000);
+    // console.log("asset cap after update", await rwat.getAssetCap(1));
 
-    expect(await rwat.ownerOf(1000000002)).to.be.equal(investor.address);
-    // console.log(await rwat.balanceOf(investor.address));
+    // await rwat.mintAsset(1, 150);
 
-    console.log(
-      "hash admin",
-      ethers.utils.keccak256(ethers.utils.toUtf8Bytes("ADMIN")),
-      rwat.address
-    );
+    // console.log(
+    //   "total assets in circulation after creating more",
+    //   await rwat.getTotalMinted(1)
+    // );
+
+    // let obj = ethers.utils.defaultAbiCoder.encode(
+    //   ["address", "address", "uint[]"],
+    //   [investor.address, rwat.address, units]
+    // );
+    // const { prefix, v, r, s } = await createSignature(obj);
+
+    // await rwat.updateServer(provider.address);
+
+    // await rwat.connect(investor).claimUnits(units, prefix, v, r, s);
+
+    // expect(await rwat.ownerOf(1000000002)).to.be.equal(investor.address);
+    // // console.log(await rwat.balanceOf(investor.address));
+
+    // console.log(
+    //   "hash admin",
+    //   ethers.utils.keccak256(ethers.utils.toUtf8Bytes("ADMIN")),
+    //   rwat.address
+    // );
   });
 
   async function createSignature(obj) {

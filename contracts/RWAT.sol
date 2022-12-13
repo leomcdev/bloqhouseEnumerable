@@ -254,33 +254,45 @@ contract RWAT is
     }
 
     /**
-     * @notice Calculates the earnings that each investor can claim.
-     * @dev Adds the new value into claimed earnings and transfers the earnings to the owner upon execution.
+     * @notice Lets user claim their share in the form of nfts
+     * @dev Requires server sig and the token drop to exist.
      */
-    function claimEarnings(
-        address _owner,
+    function sendSharesToUser(
         uint256 _assetId,
+        address _to,
+        uint256 _amount,
         uint256[] calldata _tokenIds
-    ) external whenNotPaused {
-        require(isWhitelisted[_owner], "Owner is not whitelisted");
-        uint256 totalToGet;
+    ) external onlyRole(ADMIN) {
         uint256 length = _tokenIds.length;
-        uint256 totalAssetEarnings = totalShareEarnings[_assetId];
         for (uint256 i = 0; i < length; i++) {
-            require(ownerOf(_tokenIds[i]) == _owner, "Invalid token owner");
             require(
-                _getTokenAsset(_tokenIds[i]) == _assetId,
-                "Invalid token for asset"
+                address(this) == ownerOf(_tokenIds[i]),
+                "NFTs needs to be owned by this contract or yet to be minted"
             );
-            totalToGet += totalAssetEarnings - claimedEarnings[_tokenIds[i]];
-            claimedEarnings[_tokenIds[i]] = totalAssetEarnings;
         }
-        assetEarningsToken[_assetId].transferFrom(
-            address(this),
-            _owner,
-            totalToGet
+        require(
+            _amount == length,
+            "Amount and amount of nfts to send needs to be the same"
         );
-        emit EarningsClaimed(msg.sender, _assetId, _tokenIds);
+        _setClaimed(_assetId, _tokenIds, _amount);
+        _claimUnits(address(this), _to, _tokenIds);
+    }
+
+    /**
+     * @notice Query all nfts from a specific holder
+     */
+    function getAllNFTsOfOwner(address _owner)
+        external
+        view
+        returns (uint256[] memory)
+    {
+        uint256 length = balanceOf(_owner);
+        uint256[] memory tokenIds = new uint256[](length);
+
+        for (uint256 i = 0; i < length; i++) {
+            tokenIds[i] = tokenOfOwnerByIndex(_owner, i);
+        }
+        return tokenIds;
     }
 
     function setTransfersPaused(bool _paused) external onlyRole(ADMIN) {
@@ -356,11 +368,10 @@ contract RWAT is
         if (!(from == address(0) || from == address(this))) {
             require(!pausedTransfers, "Transfers are currently paused");
             require(!assetPaused[_getTokenAsset(tokenId)], "Asset is paused");
-            // if sats corite
-            require(
-                isWhitelisted[from] && isWhitelisted[to],
-                "Invalid token transfer"
-            );
+            // require(
+            //     isWhitelisted[from] && isWhitelisted[to],
+            //     "Invalid token transfer"
+            // );
         }
     }
 
