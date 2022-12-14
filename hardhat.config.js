@@ -14,7 +14,7 @@ const {
 } = process.env;
 
 module.exports = {
-  solidity: "0.8.4",
+  defaultNetwork: "matic",
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true,
@@ -40,10 +40,14 @@ module.exports = {
       allowUnlimitedContractSize: true,
     },
   },
-  settings: {
-    optimizer: {
-      enabled: true,
-      runs: 200,
+
+  solidity: {
+    version: "0.8.4",
+    settings: {
+      optimizer: {
+        enabled: true,
+        runs: 1,
+      },
     },
   },
   gasReporter: {

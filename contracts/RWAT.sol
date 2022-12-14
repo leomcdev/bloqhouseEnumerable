@@ -60,6 +60,7 @@ contract RWAT is
     mapping(address => bool) public isWhitelisted;
 
     bool pausedTransfers;
+    bool whitelistDisabled;
     mapping(uint256 => bool) public assetPaused;
 
     mapping(uint256 => uint256) private nextId;
@@ -368,10 +369,13 @@ contract RWAT is
         if (!(from == address(0) || from == address(this))) {
             require(!pausedTransfers, "Transfers are currently paused");
             require(!assetPaused[_getTokenAsset(tokenId)], "Asset is paused");
-            // require(
-            //     isWhitelisted[from] && isWhitelisted[to],
-            //     "Invalid token transfer"
-            // );
+
+            if (!whitelistDisabled) {
+                require(
+                    isWhitelisted[from] && isWhitelisted[to],
+                    "Invalid token transfer"
+                );
+            }
         }
     }
 
