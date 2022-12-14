@@ -238,7 +238,7 @@ contract RWAT is
     }
 
     /**
-     * @dev Add earnings into contract to later be added to the respecive assets.
+     * @notice Add earnings into contract to later be added to the respecive assets.
      */
     function _addEarnings(
         address _from,
@@ -255,8 +255,7 @@ contract RWAT is
     }
 
     /**
-     * @notice Lets user claim their share in the form of nfts
-     * @dev Requires server sig and the token drop to exist.
+     * @notice Lets admin transfer units to user thats not whitelited.
      */
     function sendSharesToUser(
         uint256 _assetId,
@@ -277,23 +276,6 @@ contract RWAT is
         );
         _setClaimed(_assetId, _tokenIds, _amount);
         _claimUnits(address(this), _to, _tokenIds);
-    }
-
-    /**
-     * @notice Query all nfts from a specific holder
-     */
-    function getAllNFTsOfOwner(address _owner)
-        external
-        view
-        returns (uint256[] memory)
-    {
-        uint256 length = balanceOf(_owner);
-        uint256[] memory tokenIds = new uint256[](length);
-
-        for (uint256 i = 0; i < length; i++) {
-            tokenIds[i] = tokenOfOwnerByIndex(_owner, i);
-        }
-        return tokenIds;
     }
 
     function setTransfersPaused(bool _paused) external onlyRole(ADMIN) {
