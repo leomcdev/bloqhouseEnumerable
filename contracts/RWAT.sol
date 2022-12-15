@@ -163,6 +163,48 @@ contract RWAT is
         emit UnitsClaimed(msg.sender, _tokenIds);
     }
 
+    function claimEarnings(
+        uint256[] calldata _tokenIds,
+        uint256 _amount,
+        uint256 _assetId,
+        bytes memory _prefix,
+        uint8 _v,
+        bytes32 _r,
+        bytes32 _s
+    ) external whenNotPaused {
+        uint256 length = _tokenIds.length;
+        for (uint256 i = 0; i < length; i++) {
+            require(ownerOf(_tokenIds[i]) == msg.sender, "Invalid token owner");
+            require(
+                _getTokenAsset(_tokenIds[i]) == _assetId,
+                "Invalid token for asset"
+            );
+        }
+        bytes memory message = abi.encode(
+            msg.sender,
+            address(this),
+            _tokenIds,
+            _amount,
+            _assetId
+        );
+        require(
+            ecrecover(
+                keccak256(abi.encodePacked(_prefix, message)),
+                _v,
+                _r,
+                _s
+            ) == serverPubKey,
+            "Invalid signature"
+        );
+
+        assetEarningsToken[_assetId].transferFrom(
+            address(this),
+            msg.sender,
+            _amount
+        );
+        emit EarningsClaimed(msg.sender, _assetId, _tokenIds);
+    }
+
     /**
      * @dev Returns the unit from an investor.
      */
@@ -218,40 +260,6 @@ contract RWAT is
             );
             claimedEarnings[_tokenIds[i]] = _amount;
         }
-    }
-
-    /**
-     * @notice Calculates and adds the earnings to a asset.
-     */
-    function addEarnings(
-        uint256 _assetId,
-        uint256 _totalEarnings,
-        uint256 _unitsCount,
-        uint256 _amountPerShare
-    ) external onlyRole(ADMIN) {
-        require(
-            _totalEarnings / _unitsCount == _amountPerShare,
-            "Invalid input data"
-        );
-
-        _addEarnings(msg.sender, _assetId, _totalEarnings, _amountPerShare);
-    }
-
-    /**
-     * @notice Add earnings into contract to later be added to the respecive assets.
-     */
-    function _addEarnings(
-        address _from,
-        uint256 _assetId,
-        uint256 _totalEarnings,
-        uint256 _amountPerToken
-    ) internal {
-        totalShareEarnings[_assetId] += _amountPerToken;
-        assetEarningsToken[_assetId].transferFrom(
-            _from,
-            address(this),
-            _totalEarnings
-        );
     }
 
     /**
@@ -351,13 +359,13 @@ contract RWAT is
         if (!(from == address(0) || from == address(this))) {
             require(!pausedTransfers, "Transfers are currently paused");
             require(!assetPaused[_getTokenAsset(tokenId)], "Asset is paused");
-
-            if (!whitelistDisabled) {
-                require(
-                    isWhitelisted[from] && isWhitelisted[to],
-                    "Invalid token transfer"
-                );
-            }
+            // consider putting the if requirement and buy with crypto for the future
+            // if (!whitelistDisabled) {
+            require(
+                isWhitelisted[from] && isWhitelisted[to],
+                "Invalid token transfer"
+            );
+            // }
         }
     }
 

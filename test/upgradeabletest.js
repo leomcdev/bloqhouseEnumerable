@@ -69,10 +69,10 @@ describe("Claim units and check enumerable token ids", function () {
     console.log("owner of tokenid 1: ", await rwat.ownerOf(1000000000));
     await rwat.sendSharesToUser(1, investor.address, 1, [1000000000]);
     console.log(await rwat.balanceOf(investor.address));
-    console.log(
-      "getallnftsofowner",
-      await rwat.getAllNFTsOfOwner(rwat.address)
-    );
+    // console.log(
+    //   "getallnftsofowner",
+    //   await rwat.getAllNFTsOfOwner(rwat.address)
+    // );
 
     console.log("owner of: ", await rwat.tokenOfOwnerByIndex(rwat.address, 0));
 

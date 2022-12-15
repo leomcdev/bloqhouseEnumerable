@@ -14,7 +14,6 @@ const {
 } = process.env;
 
 module.exports = {
-  defaultNetwork: "matic",
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true,
